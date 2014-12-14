@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	h1= title
+	p Welcome to #{title}
+	
+	div(ng-controller="FileController")
+		div(flow-init="{target: '/upload'}", flow-files-submitted="$flow.upload()", flow-file-success="$file.msg = $message")
+			input(type="file", flow-btn)
+			|Input OR Other element as upload button
+			span(flow-btn).btn Upload File
+
+		table
+			tr(ng-repeat="file in $flow.files")
+				td {{$index+1}}
+				td {{file.name}}
+				td {{file.msg}}
